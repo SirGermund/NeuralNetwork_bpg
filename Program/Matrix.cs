@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NeuralMatrix
+namespace NeuralNetwork_bpg
 {
 	class Matrix
 	{
