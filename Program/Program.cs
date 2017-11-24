@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Classification
+namespace NeuralNetwork_bpg
 {
 	class MainClass
 	{
