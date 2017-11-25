@@ -11,6 +11,12 @@ namespace NeuralNetwork_bpg
 			matrix = new double[n, m];
 			N = n;
 			M = m;
+		}
+		public Matrix(int n, int m, int i)
+		{
+			matrix = new double[n, m];
+			N = n;
+			M = m;
 			Randomize();
 		}
 		public Matrix(int n)
@@ -18,7 +24,6 @@ namespace NeuralNetwork_bpg
 			matrix = new double[n, 1];
 			N = n;
 			M = 1;
-			Randomize();
 		}
 		void Randomize()
 		{

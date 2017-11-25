@@ -13,6 +13,30 @@ namespace NeuralNetwork_bpg
 				A[i,0] = 1 / (1 + Math.Exp(-A[i,0]));
 			}
 		}
+		public static double[,] DeltaOut(ref double[,] A, ref double[,] ideal)
+		{
+			double[,] res = new double[A.GetLength(0), 1];
+			for (int i = 0; i < A.GetLength(0); i++)
+			{
+				res[i, 0] = (ideal[i, 0] - A[i, 0]) * (1 - A[i, 0]) * A[i, 0];
+			}
+			return res;
+		}
+		public static double[,] DeltaHidden(ref double[,] A, ref double[,] w, ref double[,] dout)
+		{
+			double temp;
+			double[,] res = new double[A.GetLength(0), 1];
+			for (int i = 0; i < A.GetLength(0); i++)
+			{
+				temp = 0;
+				for (int j = 0; j < w.GetLength(1); i++)
+				{
+					temp += w[j, i] * dout[j, 0];
+				}
+				res[i, 0] = (1 - A[i, 0]) * A[i, 0] * temp;
+			}
+			return res;
+		}
 		//public Neuron()
 		//{
 		//	w = new double[layerinput];

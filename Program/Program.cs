@@ -14,8 +14,14 @@ namespace NeuralNetwork_bpg
 			Matrix x = new Matrix(Neuron.layerinput);
 			Matrix h = new Matrix(Neuron.layerhidden);
 			Matrix y = new Matrix(Neuron.layeroutput);
-			Matrix wxh = new Matrix(Neuron.layerhidden, Neuron.layerinput);
-			Matrix why = new Matrix(Neuron.layeroutput, Neuron.layerhidden);
+			Matrix wxh = new Matrix(Neuron.layerhidden, Neuron.layerinput,1);
+			Matrix why = new Matrix(Neuron.layeroutput, Neuron.layerhidden,1);
+			Matrix ideal = new Matrix(Neuron.layeroutput);
+
+			Matrix dh = new Matrix(Neuron.layerhidden);
+			Matrix dy = new Matrix(Neuron.layeroutput);
+			Matrix dwxh = new Matrix(Neuron.layerhidden, Neuron.layerinput);
+			Matrix dwhy = new Matrix(Neuron.layeroutput, Neuron.layerhidden);
 
 			for (int epoha = 0; epoha < 1; epoha++)
 			{
@@ -24,7 +30,9 @@ namespace NeuralNetwork_bpg
 					for (int b = 0; b < 2; b++)
 					{
 						GoForward(ref a, ref b, ref x, ref h, ref y, ref wxh, ref why);
-						
+						ideal.matrix[0, 0] = Bool2Int(a, b);
+						dy.matrix = Neuron.DeltaOut(ref y.matrix, ref ideal.matrix);
+						dh.matrix = Neuron.DeltaHidden(ref h.matrix, ref why.matrix, ref dy.matrix);
 					}
 				}
 			}
