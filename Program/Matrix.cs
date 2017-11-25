@@ -13,6 +13,13 @@ namespace NeuralNetwork_bpg
 			M = m;
 			Randomize();
 		}
+		public Matrix(int n)
+		{
+			matrix = new double[n, 1];
+			N = n;
+			M = 1;
+			Randomize();
+		}
 		void Randomize()
 		{
 			Random rnd = new Random();
@@ -40,16 +47,17 @@ namespace NeuralNetwork_bpg
 			return res;
 		}
 
-		public static void PrintMatrix(double[,] a)
+		public static void PrintMatrix(Matrix a)
 		{
-			for (int i = 0; i < a.GetLength(0); i++)
+			for (int i = 0; i < a.matrix.GetLength(0); i++)
 			{
-				for (int j = 0; j < a.GetLength(1); j++)
+				for (int j = 0; j < a.matrix.GetLength(1); j++)
 				{
-					Console.Write("{0}\t", a[i, j]);
+					Console.Write("{0:F5}\t", a.matrix[i, j]);
 				}
 				Console.WriteLine();
 			}
+			//Console.WriteLine();
 		}
 	}
 }
