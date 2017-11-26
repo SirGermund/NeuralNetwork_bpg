@@ -51,7 +51,30 @@ namespace NeuralNetwork_bpg
 			}
 			return res;
 		}
-
+		public static double[,] Transponir(double[,] a)
+		{
+			double[,] res = new double[a.GetLength(1), a.GetLength(0)];
+			for (int i = 0; i < res.GetLength(0); i++)
+			{
+				for (int j = 0; j < res.GetLength(1); j++)
+				{
+					res[i, j] = a[j, i];
+				}
+			}
+			return res;
+		}
+		public static double[,] Add(double [,] a, double [,] b)
+		{
+			double[,] res = new double[a.GetLength(0), a.GetLength(1)];
+			for (int i = 0; i < a.GetLength(0); i++)
+			{
+				for (int j = 0; j < a.GetLength(1); j++)
+				{
+					res[i, j] = a[i, j] + b[i, j];
+				}
+			}
+			return res;
+		}
 		public static void PrintMatrix(Matrix a)
 		{
 			for (int i = 0; i < a.matrix.GetLength(0); i++)
@@ -62,7 +85,7 @@ namespace NeuralNetwork_bpg
 				}
 				Console.WriteLine();
 			}
-			//Console.WriteLine();
+			Console.WriteLine();
 		}
 	}
 }

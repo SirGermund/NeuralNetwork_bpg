@@ -29,11 +29,23 @@ namespace NeuralNetwork_bpg
 			for (int i = 0; i < A.GetLength(0); i++)
 			{
 				temp = 0;
-				for (int j = 0; j < w.GetLength(1); i++)
+				for (int j = 0; j < w.GetLength(0); j++)
 				{
 					temp += w[j, i] * dout[j, 0];
 				}
 				res[i, 0] = (1 - A[i, 0]) * A[i, 0] * temp;
+			}
+			return res;
+		}
+		public static double[,] DeltaWeight(ref double[,] grad, ref double[,] dw)
+		{
+			double[,] res = new double[dw.GetLength(0), dw.GetLength(1)];
+			for (int i = 0; i < dw.GetLength(0); i++)
+			{
+				for (int j = 0; j < dw.GetLength(1); j++)
+				{
+					res[i, j] = 0.15 * grad[i, j] + 0.1 * dw[i, j];
+				}
 			}
 			return res;
 		}

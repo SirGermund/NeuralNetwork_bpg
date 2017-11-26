@@ -22,8 +22,10 @@ namespace NeuralNetwork_bpg
 			Matrix dy = new Matrix(Neuron.layeroutput);
 			Matrix dwxh = new Matrix(Neuron.layerhidden, Neuron.layerinput);
 			Matrix dwhy = new Matrix(Neuron.layeroutput, Neuron.layerhidden);
+			Matrix gxh = new Matrix(Neuron.layerhidden, Neuron.layerinput);
+			Matrix ghy = new Matrix(Neuron.layeroutput, Neuron.layerhidden);
 
-			for (int epoha = 0; epoha < 1; epoha++)
+			for (int epoha = 0; epoha < 100; epoha++)
 			{
 				for (int a = 0; a < 2; a++)
 				{
@@ -32,7 +34,16 @@ namespace NeuralNetwork_bpg
 						GoForward(ref a, ref b, ref x, ref h, ref y, ref wxh, ref why);
 						ideal.matrix[0, 0] = Bool2Int(a, b);
 						dy.matrix = Neuron.DeltaOut(ref y.matrix, ref ideal.matrix);
+						ghy.matrix = Matrix.Transponir(Matrix.Multiply(h.matrix, y.matrix));
+						dwhy.matrix = Neuron.DeltaWeight(ref ghy.matrix, ref dwhy.matrix);
+						why.matrix = Matrix.Add(why.matrix, dwhy.matrix);
+						Matrix.PrintMatrix(why);
+
 						dh.matrix = Neuron.DeltaHidden(ref h.matrix, ref why.matrix, ref dy.matrix);
+						gxh.matrix = Matrix.Multiply(h.matrix, Matrix.Transponir(x.matrix));
+						dwxh.matrix = Neuron.DeltaWeight(ref gxh.matrix, ref dwxh.matrix);
+						wxh.matrix = Matrix.Add(wxh.matrix, dwxh.matrix);
+						Matrix.PrintMatrix(wxh);
 					}
 				}
 			}
@@ -111,6 +122,7 @@ namespace NeuralNetwork_bpg
 			Neuron.Sigmoid(ref h.matrix);
 			y.matrix = Matrix.Multiply(why.matrix, h.matrix);
 			Neuron.Sigmoid(ref y.matrix);
+			Console.Write("{0} & {1} = {2}\t",a,b, Bool2Int(a, b));
 			Matrix.PrintMatrix(y);
 		}
 		static void GoBackward(ref int a, ref int b, ref Matrix x, ref Matrix h, ref Matrix y, ref Matrix wxh, ref Matrix why)
