@@ -1,0 +1,5 @@
+/Users/germund/Projects/NeuralNetwork_bpg/NeuralNetwork_bpg/bin/Debug/NeuralNetwork_bpg.exe
+/Users/germund/Projects/NeuralNetwork_bpg/NeuralNetwork_bpg/bin/Debug/NeuralNetwork_bpg.pdb
+/Users/germund/Projects/NeuralNetwork_bpg/NeuralNetwork_bpg/obj/x86/Debug/NeuralNetwork_bpg.csproj.CoreCompileInputs.cache
+/Users/germund/Projects/NeuralNetwork_bpg/NeuralNetwork_bpg/obj/x86/Debug/NeuralNetwork_bpg.exe
+/Users/germund/Projects/NeuralNetwork_bpg/NeuralNetwork_bpg/obj/x86/Debug/NeuralNetwork_bpg.pdb
